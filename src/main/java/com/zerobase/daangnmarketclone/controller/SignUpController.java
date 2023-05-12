@@ -20,7 +20,7 @@ public class SignUpController {
     public ResponseEntity<String> signUp(@RequestBody SignUpRequestDto signUpRequestDto)
         throws URISyntaxException {
 
-        Long userId = signUpService.signUp(signUpRequestDto);
+        Long userId = signUpService.signUp(signUpRequestDto.toUserDto());
 
         return ResponseEntity
             .created(createURI(userId))

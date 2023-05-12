@@ -7,7 +7,7 @@ import com.zerobase.daangnmarketclone.domain.entity.user.User;
 import com.zerobase.daangnmarketclone.domain.entity.user.UserRole;
 import com.zerobase.daangnmarketclone.domain.entity.user.UserStatus;
 import com.zerobase.daangnmarketclone.domain.repository.UserRepository;
-import com.zerobase.daangnmarketclone.dto.SignUpRequestDto;
+import com.zerobase.daangnmarketclone.dto.UserDto;
 import com.zerobase.daangnmarketclone.exception.CustomException;
 import com.zerobase.daangnmarketclone.exception.ErrorCode;
 import org.junit.jupiter.api.BeforeEach;
@@ -48,7 +48,7 @@ class SignUpServiceTest {
     @Test
     void 회원가입() {
         // given
-        SignUpRequestDto dto = new SignUpRequestDto();
+        UserDto dto = new UserDto();
         dto.setEmail("test02@naver.com");
         dto.setPassword("password");
         dto.setNickname("닉네임");
@@ -71,7 +71,7 @@ class SignUpServiceTest {
     @Test
     void 중복_이메일_예외() {
         // given
-        SignUpRequestDto dto = new SignUpRequestDto();
+        UserDto dto = new UserDto();
         dto.setEmail("test01@naver.com");
         dto.setPassword("password");
         dto.setNickname("닉네임");

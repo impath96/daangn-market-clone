@@ -1,6 +1,7 @@
 package com.zerobase.daangnmarketclone.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,8 +10,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignUpRequestDto {
-
+@Builder
+public class UserDto {
 
     private String email;     // 이메일
 
@@ -22,15 +23,4 @@ public class SignUpRequestDto {
     private String phoneNumber;
     private String profileImage;
 
-    public UserDto toUserDto() {
-
-        return UserDto.builder()
-            .email(this.email)
-            .password(this.password)
-            .nickname(this.nickname)
-            .phoneNumber(this.phoneNumber)
-            .profileImage(this.profileImage)
-            .build();
-
-    }
 }
