@@ -1,0 +1,9 @@
+### 회원가입
+POST localhost:8080/sign-up
+Content-Type: application/json
+
+{
+  "email" : "test01@naver.com",
+  "password" : "password",
+  "nickname" : "닉네임"
+}
