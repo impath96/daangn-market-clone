@@ -7,3 +7,8 @@ Content-Type: application/json
   "password" : "password"
 }
 
+### 테스트
+POST localhost:8080/test
+X-AUTH-TOKEN: eyJyZWdEYXRlIjoxNjg0MzEwNTQ3NDY5LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dLCJlbWFpbCI6InRlc3QwMUBuYXZlci5jb20iLCJleHAiOjE2ODY5MDI1NDd9.iFhm2F0PodBg24x8Moa2YM3HiBO2rJDqZjaPRSxs-rA
+
+

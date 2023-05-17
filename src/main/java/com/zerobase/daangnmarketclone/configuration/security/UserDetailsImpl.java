@@ -1,33 +1,40 @@
 package com.zerobase.daangnmarketclone.configuration.security;
 
-import com.zerobase.daangnmarketclone.domain.entity.user.User;
 import java.util.Collection;
-import java.util.Collections;
-import lombok.Getter;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@Getter
 @RequiredArgsConstructor
+@ToString
 public class UserDetailsImpl implements UserDetails {
 
-    private final User user;
+    private String username;
+    private String password;
+    private Collection<? extends GrantedAuthority> authorities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(user.getRole().name()));
+        return this.authorities;
+    }
+
+    @Builder
+    public UserDetailsImpl(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return this.username;
     }
 
     @Override
