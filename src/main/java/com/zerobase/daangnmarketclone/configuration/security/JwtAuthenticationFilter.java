@@ -1,7 +1,7 @@
 package com.zerobase.daangnmarketclone.configuration.security;
 
-import com.zerobase.daangnmarketclone.domain.entity.user.User;
 import com.zerobase.daangnmarketclone.domain.entity.user.UserRole;
+import com.zerobase.daangnmarketclone.dto.UserDto;
 import java.io.IOException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -35,20 +35,23 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
         if (TokenUtils.isValid(jwt)) {
             String username = TokenUtils.extractUsername(jwt);
             UserRole userRole = TokenUtils.extractRole(jwt);
-            User user = User.builder()
-                .email(username)
-                .role(userRole)
-                .build();
-            UserDetails userDetails = new UserDetailsImpl(user);
+
+            UserDto userDto = new UserDto();
+            userDto.setEmail(username);
+            userDto.setRole(userRole);
+
+            UserDetails userDetails = new UserDetailsImpl(UserDto.toEntity(userDto));
+
             Authentication authentication = new UsernamePasswordAuthenticationToken(
                 userDetails,
                 null,
                 userDetails.getAuthorities()
             );
+
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
             log.info("authentication 객체 저장 완료 : {}", authentication);
         }
-
         chain.doFilter(request, response);
     }
 

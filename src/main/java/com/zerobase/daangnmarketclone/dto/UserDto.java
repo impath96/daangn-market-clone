@@ -1,5 +1,7 @@
 package com.zerobase.daangnmarketclone.dto;
 
+import com.zerobase.daangnmarketclone.domain.entity.user.User;
+import com.zerobase.daangnmarketclone.domain.entity.user.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,5 +24,18 @@ public class UserDto {
     // (선택사항) 휴대폰번호, 프로필 사진
     private String phoneNumber;
     private String profileImage;
+
+    private UserRole role;
+
+    public static User toEntity(UserDto userDto) {
+        return User.builder()
+            .email(userDto.getEmail())
+            .password(userDto.getPassword())
+            .nickname(userDto.getNickname())
+            .role(userDto.getRole())
+            .phoneNumber(userDto.getPhoneNumber())
+            .imageUrl(userDto.getProfileImage())
+            .build();
+    }
 
 }
