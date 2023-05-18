@@ -13,3 +13,19 @@ spring:
       ddl-auto: create
     open-in-view: true
     show-sql: true
+cloud:
+  aws:
+    s3:
+      bucket: daangn-project  # bucket 이름
+    region:
+      static: ap-northeast-2  # region 이름(아시아-서울)
+    stack:
+      auto: false
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+
