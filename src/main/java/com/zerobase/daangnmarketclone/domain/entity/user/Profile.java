@@ -15,4 +15,10 @@ public class Profile {
 
     private String imageUrl;
 
+    public void update(Profile profile) {
+        if (profile.getImageUrl() != null) {
+            this.imageUrl = profile.getImageUrl();
+        }
+        this.nickname = profile.getNickname();
+    }
 }

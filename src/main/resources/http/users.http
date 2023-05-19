@@ -1,0 +1,8 @@
+PUT localhost:8080/users
+Content-Type: application/json
+X-AUTH-TOKEN:  eyJyZWdEYXRlIjoxNjg0MzE2ODMzMzc5LCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dLCJlbWFpbCI6InRlc3QwMUBuYXZlci5jb20iLCJleHAiOjE2ODY5MDg4MzN9.CAJyUM-jg4TeyOGEbEuwxC3omLcm4FaHeJ7_ZOyU9QU
+
+{
+  "nickname" : "newNickname",
+  "imageUrl" : "c://images/users/1/이미지이름"
+}

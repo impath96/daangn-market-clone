@@ -65,7 +65,7 @@ public class User extends BaseTimeEntity {
     }
 
     public void updateProfile(Profile profile) {
-        this.profile = profile;
+        this.profile.update(profile);
     }
 
 }
