@@ -41,6 +41,9 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
+            .headers()
+            .frameOptions()
+            .sameOrigin().and()
             .csrf().disable()
             //  접근 권한(인가)에 실패한 경우
             .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler())
@@ -56,7 +59,7 @@ public class SecurityConfiguration {
             .httpBasic().disable()
             .authorizeRequests()
             // 각 API 경로에 대한 접근권한 설정
-            .antMatchers("/sign-up").permitAll()
+            .antMatchers("/sign-up", "/h2-console/**").permitAll()
             .antMatchers(HttpMethod.GET, "/**").permitAll()
             .anyRequest().authenticated()
             .and()
