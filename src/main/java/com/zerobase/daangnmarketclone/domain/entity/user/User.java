@@ -64,6 +64,10 @@ public class User extends BaseTimeEntity {
         this.userStatus = status;
     }
 
+    public boolean hasRegion(Region region) {
+        return userRegions.contains(region);
+    }
+
     public void updateProfile(Profile profile) {
         this.profile.update(profile);
     }

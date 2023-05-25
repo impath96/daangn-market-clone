@@ -10,15 +10,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @Table(name = "user_region")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString
+@AllArgsConstructor
+@Builder
 public class UserRegion {
 
     @Id
@@ -51,7 +53,9 @@ public class UserRegion {
 
     //== 생성 메서드 ==//
     public static UserRegion create(User user, Region region) {
-        UserRegion userRegion = new UserRegion();
+        UserRegion userRegion = UserRegion.builder()
+            .isRepresent(true)
+            .build();
         userRegion.addUser(user);
         userRegion.addRegion(region);
         return userRegion;

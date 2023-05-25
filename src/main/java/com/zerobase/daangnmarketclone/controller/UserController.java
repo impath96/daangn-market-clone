@@ -22,6 +22,15 @@ public class UserController {
 
     private final UserService userService;
 
+    // 내 동네 설정(등록)
+    @PostMapping("/locations/{id}")
+    public void saveRegion(
+        @AuthenticationPrincipal UserDetails loginUser,
+        @PathVariable("id") Long regionId
+    ) {
+        userService.saveRegion(loginUser.getUsername(), regionId);
+    }
+    
     @PutMapping("/profile")
     public ResponseEntity<?> updateUserProfile(
         @AuthenticationPrincipal UserDetails userDetails,
