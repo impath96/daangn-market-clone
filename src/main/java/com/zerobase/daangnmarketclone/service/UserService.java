@@ -23,6 +23,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final RegionRepository regionRepository;
     private final UserRegionRepository userRegionRepository;
+    private final ImageUploader imageUploader;
 
     // 예외 처리가 로직의 대부분... 어떻게 하지
     @Transactional
@@ -56,7 +57,6 @@ public class UserService {
 
     }
 
-    private final ImageUploader imageUploader;
 
     @Transactional
     public String updateProfile(UserDto userDto, MultipartFile multipartFile) {
