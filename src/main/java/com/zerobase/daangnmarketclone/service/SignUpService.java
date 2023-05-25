@@ -1,5 +1,6 @@
 package com.zerobase.daangnmarketclone.service;
 
+import com.zerobase.daangnmarketclone.domain.entity.user.Profile;
 import com.zerobase.daangnmarketclone.domain.entity.user.User;
 import com.zerobase.daangnmarketclone.domain.entity.user.UserRole;
 import com.zerobase.daangnmarketclone.domain.entity.user.UserStatus;
@@ -40,9 +41,8 @@ public class SignUpService {
         return User.builder()
             .email(userDto.getEmail())
             .password(encryptPassword(userDto.getPassword()))
-            .nickname(userDto.getNickname())
+            .profile(new Profile(userDto.getNickname(), userDto.getProfileImage()))
             .phoneNumber(userDto.getPhoneNumber())
-            .imageUrl(userDto.getProfileImage())
             .role(UserRole.ROLE_USER)
             .status(UserStatus.NORMAL)
             .build();

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -37,13 +38,11 @@ public class User extends BaseTimeEntity {
 
     private String password;
 
-    private String nickname;
+    @Embedded
+    private Profile profile;
 
     @Column(name = "phone_number")
     private String phoneNumber;
-
-    @Column(name = "image_url")
-    private String imageUrl;
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
@@ -55,16 +54,18 @@ public class User extends BaseTimeEntity {
     private List<UserRegion> userRegions = new ArrayList<>();
 
     @Builder
-    public User(Long id, String email, String password, String nickname, String phoneNumber,
-        String imageUrl, UserRole role, UserStatus status) {
+    public User(Long id, String email, String password, Profile profile, String phoneNumber, UserRole role, UserStatus status) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.nickname = nickname;
+        this.profile = profile;
         this.phoneNumber = phoneNumber;
-        this.imageUrl = imageUrl;
         this.role = role;
         this.userStatus = status;
+    }
+
+    public void updateProfile(Profile profile) {
+        this.profile.update(profile);
     }
 
 }

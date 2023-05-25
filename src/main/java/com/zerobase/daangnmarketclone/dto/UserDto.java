@@ -1,5 +1,6 @@
 package com.zerobase.daangnmarketclone.dto;
 
+import com.zerobase.daangnmarketclone.domain.entity.user.Profile;
 import com.zerobase.daangnmarketclone.domain.entity.user.User;
 import com.zerobase.daangnmarketclone.domain.entity.user.UserRole;
 import lombok.AllArgsConstructor;
@@ -31,10 +32,9 @@ public class UserDto {
         return User.builder()
             .email(userDto.getEmail())
             .password(userDto.getPassword())
-            .nickname(userDto.getNickname())
+            .profile(new Profile(userDto.getNickname(), userDto.getProfileImage()))
             .role(userDto.getRole())
             .phoneNumber(userDto.getPhoneNumber())
-            .imageUrl(userDto.getProfileImage())
             .build();
     }
 
