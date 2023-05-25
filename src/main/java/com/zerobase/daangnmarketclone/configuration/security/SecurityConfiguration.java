@@ -39,7 +39,6 @@ public class SecurityConfiguration {
     // authenticated() : 해당 경로에 대해 로그인(인증)을 요구
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http
             .headers()
             .frameOptions()
