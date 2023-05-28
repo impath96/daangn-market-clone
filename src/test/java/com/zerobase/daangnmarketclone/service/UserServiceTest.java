@@ -39,7 +39,7 @@ class UserServiceTest {
         return User.builder()
             .email(email)
             .password(password)
-            .nickname(nickname)
+//          .nickname(nickname)
             .build();
     }
 
@@ -67,6 +67,15 @@ class UserServiceTest {
         assertThat(userRegion.getUser().getId()).isEqualTo(user.getId());
         assertThat(userRegion.getRegion().getId()).isEqualTo(regionId);
 
+    }
+
+    @Test
+    void 유저_동네_인증() {
+
+        // given
+
+        // when
+        // then
     }
 
 }

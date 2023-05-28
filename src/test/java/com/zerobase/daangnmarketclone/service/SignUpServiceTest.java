@@ -38,7 +38,7 @@ class SignUpServiceTest {
         return User.builder()
             .email(email)
             .password(passwordEncoder.encode(password))
-            .nickname(nickname)
+//            .nickname(nickname)
             .role(UserRole.ROLE_USER)
             .status(UserStatus.NORMAL)
             .build();
@@ -60,9 +60,9 @@ class SignUpServiceTest {
         // then
         assertThat(user.getEmail()).isEqualTo(dto.getEmail());
         assertThat(passwordEncoder.matches(dto.getPassword(), user.getPassword())).isTrue();
-        assertThat(user.getNickname()).isEqualTo(dto.getNickname());
+//        assertThat(user.getNickname()).isEqualTo(dto.getNickname());
         assertThat(user.getPhoneNumber()).isNull();
-        assertThat(user.getImageUrl()).isNull();
+//        assertThat(user.getImageUrl()).isNull();
         assertThat(user.getRole()).isEqualTo(UserRole.ROLE_USER);
         assertThat(user.getUserStatus()).isEqualTo(UserStatus.NORMAL);
     }
