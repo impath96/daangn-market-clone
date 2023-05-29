@@ -81,7 +81,7 @@ public class UserController {
 
     }
 
-    private static RegionDto convertAddressResponseToRegionDto(ApiAddressResponse addressDto) {
+    private RegionDto convertAddressResponseToRegionDto(ApiAddressResponse addressDto) {
         return RegionDto.builder()
             .state(addressDto.getRegion1DepthName())
             .city(addressDto.getRegion2DepthName())
