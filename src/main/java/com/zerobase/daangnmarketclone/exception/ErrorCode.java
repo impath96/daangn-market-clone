@@ -12,6 +12,10 @@ public enum ErrorCode {
     REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 동네를 찾을 수 없습니다."),
     USER_REGION_DUPLICATED(HttpStatus.BAD_REQUEST, "이미 등록된 동네입니다."),
     IMAGE_UPLOAD_FAIL(HttpStatus.BAD_REQUEST, "이미지 업로드에 실패했습니다"),
+    USER_REGION_NOT_FOUND(HttpStatus.NOT_FOUND,"해당하는 유저의 동네를 찾을 수 없습니다."),
+    UNMATCHED_USER_REGION(HttpStatus.BAD_REQUEST, "이 동네는 해당 유저가 등록한 동네가 아닙니다."),
+    USER_REGION_NOT_REPRESENT(HttpStatus.BAD_REQUEST, "해당 유저의 대표 동네가 아닙니다."),
+    CURRENT_USER_POSITION_OUTSIDE(HttpStatus.BAD_REQUEST, "현재 설정된 동네에 위치해 있지 않습니다."),
     ;
 
     private final HttpStatus status;

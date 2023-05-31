@@ -29,3 +29,7 @@ logging:
         util:
           EC2MetadataUtils: error
 
+kakao:
+  api:
+    key: KakaoAK ff402161eb9124fd65817e6e43910c3f
+

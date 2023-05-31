@@ -37,6 +37,7 @@ public class UserRegion {
     private Region region;
 
     // 동네 인증 상태(유무)
+    private boolean isAuthenticated;
 
     // 대표 동네 설정 상태
     private boolean isRepresent;
@@ -59,6 +60,14 @@ public class UserRegion {
         userRegion.addUser(user);
         userRegion.addRegion(region);
         return userRegion;
+    }
+
+    public boolean isOwner(Long userId) {
+        return user.getId().equals(userId);
+    }
+
+    public void authenticate() {
+        this.isAuthenticated = true;
     }
 
 }
