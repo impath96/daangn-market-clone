@@ -13,6 +13,7 @@ spring:
       ddl-auto: create
     open-in-view: true
     show-sql: true
+    defer-datasource-initialization: true
 cloud:
   aws:
     s3:
