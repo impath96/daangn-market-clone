@@ -1,5 +1,6 @@
 package com.zerobase.daangnmarketclone.api;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,6 +10,7 @@ import lombok.ToString;
 @ToString
 public class Meta {
 
-    private int total_count;
+    @JsonProperty(value = "total_count")
+    private int totalCount;
 
 }
