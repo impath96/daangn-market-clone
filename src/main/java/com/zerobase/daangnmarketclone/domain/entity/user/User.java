@@ -1,6 +1,7 @@
 package com.zerobase.daangnmarketclone.domain.entity.user;
 
 import com.zerobase.daangnmarketclone.domain.entity.BaseTimeEntity;
+import com.zerobase.daangnmarketclone.domain.entity.InterestCategory;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -19,14 +20,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @Table(name = "users")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@ToString(exclude = {"userRegions"}, callSuper = true)
 public class User extends BaseTimeEntity {
 
     @Id
@@ -53,8 +52,12 @@ public class User extends BaseTimeEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<UserRegion> userRegions = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<InterestCategory> interestCategories = new ArrayList<>();
+
     @Builder
-    public User(Long id, String email, String password, Profile profile, String phoneNumber, UserRole role, UserStatus status) {
+    public User(Long id, String email, String password, Profile profile, String phoneNumber,
+        UserRole role, UserStatus status, List<InterestCategory> interestCategories) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -62,6 +65,7 @@ public class User extends BaseTimeEntity {
         this.phoneNumber = phoneNumber;
         this.role = role;
         this.userStatus = status;
+        this.interestCategories =interestCategories;
     }
 
     public boolean hasRegion(Region region) {

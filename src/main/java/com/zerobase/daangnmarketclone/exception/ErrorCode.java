@@ -16,6 +16,9 @@ public enum ErrorCode {
     UNMATCHED_USER_REGION(HttpStatus.BAD_REQUEST, "이 동네는 해당 유저가 등록한 동네가 아닙니다."),
     USER_REGION_NOT_REPRESENT(HttpStatus.BAD_REQUEST, "해당 유저의 대표 동네가 아닙니다."),
     CURRENT_USER_POSITION_OUTSIDE(HttpStatus.BAD_REQUEST, "현재 설정된 동네에 위치해 있지 않습니다."),
+    UN_MATCHED_USER_INTEREST_CATEGORY(HttpStatus.BAD_REQUEST, "유저가 설정하지 않은 관심 카테고리 입니다."),
+    ALREADY_ADDED_INTEREST_CATEGORY(HttpStatus.BAD_REQUEST,"이미 등록된 관심 카테고리 입니다."),
+    ALREADY_NOT_ADDED_INTEREST_CATEGORY(HttpStatus.BAD_REQUEST,"이미 등록되어 있지 않은 관심 카테고리 입니다."),
     ;
 
     private final HttpStatus status;
