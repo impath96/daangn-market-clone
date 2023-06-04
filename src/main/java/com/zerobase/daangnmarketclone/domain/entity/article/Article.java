@@ -1,5 +1,6 @@
 package com.zerobase.daangnmarketclone.domain.entity.article;
 
+import com.zerobase.daangnmarketclone.domain.entity.BaseTimeEntity;
 import com.zerobase.daangnmarketclone.domain.entity.Category;
 import com.zerobase.daangnmarketclone.domain.entity.user.Region;
 import com.zerobase.daangnmarketclone.domain.entity.user.User;
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Article {
+public class Article extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

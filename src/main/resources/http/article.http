@@ -20,3 +20,6 @@ X-AUTH-TOKEN: eyJyZWdEYXRlIjoxNjg1ODU2NzE3NDEyLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1Ni
   "content" : "새 게시글 내용",
   "price" : 1500
 }
+
+### Article 한 건 조회
+GET localhost:8080/articles/1

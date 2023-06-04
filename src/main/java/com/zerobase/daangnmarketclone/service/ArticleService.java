@@ -11,6 +11,7 @@ import com.zerobase.daangnmarketclone.domain.repository.ArticleRepository;
 import com.zerobase.daangnmarketclone.domain.repository.CategoryRepository;
 import com.zerobase.daangnmarketclone.domain.repository.RegionRepository;
 import com.zerobase.daangnmarketclone.domain.repository.UserRepository;
+import com.zerobase.daangnmarketclone.dto.ArticleDetailResponse;
 import com.zerobase.daangnmarketclone.dto.CreateArticle;
 import com.zerobase.daangnmarketclone.dto.UpdateArticle;
 import com.zerobase.daangnmarketclone.exception.CustomException;
@@ -82,5 +83,14 @@ public class ArticleService {
 
         article.updateContent(updateContent);
 
+    }
+
+    @Transactional(readOnly = true)
+    public ArticleDetailResponse getOne(Long articleId) {
+
+        Article article = articleRepository.findByIdWithRegionAndUserAndCategory(articleId)
+            .orElseThrow(() -> new CustomException(ErrorCode.ARTICLE_NOT_FOUND));
+
+        return ArticleDetailResponse.of(article);
     }
 }

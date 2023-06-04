@@ -1,11 +1,13 @@
 package com.zerobase.daangnmarketclone.controller;
 
+import com.zerobase.daangnmarketclone.dto.ArticleDetailResponse;
 import com.zerobase.daangnmarketclone.dto.CreateArticle;
 import com.zerobase.daangnmarketclone.dto.UpdateArticle;
 import com.zerobase.daangnmarketclone.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -36,6 +38,14 @@ public class ArticleController {
         @RequestBody UpdateArticle request
     ) {
         articleService.update(userDetails.getUsername(), articleId, request);
+    }
+
+    // 특정 게시글 조회
+    @GetMapping("/articles/{article-id}")
+    public ArticleDetailResponse getOne(
+        @PathVariable("article-id") Long articleId
+    ) {
+        return articleService.getOne(articleId);
     }
 
 }
