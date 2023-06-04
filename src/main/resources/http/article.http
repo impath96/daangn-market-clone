@@ -1,0 +1,11 @@
+### Article 작성
+POST localhost:8080/articles
+Content-Type: application/json
+X-AUTH-TOKEN: eyJyZWdEYXRlIjoxNjg1ODU2NzE3NDEyLCJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn1dLCJlbWFpbCI6InRlc3QwMUBuYXZlci5jb20iLCJleHAiOjE2ODg0NDg3MTd9.rYOv72V53L4uHjZDxEYqLIz6RRbRiZSxg3DJIXhWzyk
+
+{
+  "title" : "새 게시글 제목",
+  "content" : "새 게시글 내용",
+  "price" : 1000,
+  "categoryId" : 1
+}
