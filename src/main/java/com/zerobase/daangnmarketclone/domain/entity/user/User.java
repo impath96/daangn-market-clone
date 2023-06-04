@@ -2,6 +2,8 @@ package com.zerobase.daangnmarketclone.domain.entity.user;
 
 import com.zerobase.daangnmarketclone.domain.entity.BaseTimeEntity;
 import com.zerobase.daangnmarketclone.domain.entity.InterestCategory;
+import com.zerobase.daangnmarketclone.exception.CustomException;
+import com.zerobase.daangnmarketclone.exception.ErrorCode;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -76,4 +78,10 @@ public class User extends BaseTimeEntity {
         this.profile.update(profile);
     }
 
+    public UserRegion getRepresentRegion() {
+        return userRegions.stream()
+            .filter(UserRegion::isRepresent)
+            .findFirst()
+            .orElseThrow(() -> new CustomException(ErrorCode.USER_REGION_NOT_FOUND));
+    }
 }

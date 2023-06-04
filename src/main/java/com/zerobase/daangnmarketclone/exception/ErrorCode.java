@@ -19,6 +19,7 @@ public enum ErrorCode {
     UN_MATCHED_USER_INTEREST_CATEGORY(HttpStatus.BAD_REQUEST, "유저가 설정하지 않은 관심 카테고리 입니다."),
     ALREADY_ADDED_INTEREST_CATEGORY(HttpStatus.BAD_REQUEST,"이미 등록된 관심 카테고리 입니다."),
     ALREADY_NOT_ADDED_INTEREST_CATEGORY(HttpStatus.BAD_REQUEST,"이미 등록되어 있지 않은 관심 카테고리 입니다."),
+    CATEGORY_NOT_FOUND(HttpStatus.BAD_REQUEST, "존재하지 않는 카테고리입니다."),
     ;
 
     private final HttpStatus status;
