@@ -20,6 +20,7 @@ public enum ErrorCode {
     ALREADY_ADDED_INTEREST_CATEGORY(HttpStatus.BAD_REQUEST,"이미 등록된 관심 카테고리 입니다."),
     ALREADY_NOT_ADDED_INTEREST_CATEGORY(HttpStatus.BAD_REQUEST,"이미 등록되어 있지 않은 관심 카테고리 입니다."),
     CATEGORY_NOT_FOUND(HttpStatus.BAD_REQUEST, "존재하지 않는 카테고리입니다."),
+    ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않은 중고 거래 게시글입니다."),
     ;
 
     private final HttpStatus status;

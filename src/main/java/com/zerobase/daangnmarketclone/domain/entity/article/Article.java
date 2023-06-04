@@ -59,4 +59,7 @@ public class Article {
     }
 
 
+    public void updateContent(Content content) {
+        this.content.update(content);
+    }
 }

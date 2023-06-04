@@ -20,4 +20,10 @@ public class Content {
         this.price = price;
         this.content = content;
     }
+
+    public void update(Content content) {
+        this.title = content.getTitle();
+        this.price = content.getPrice();
+        this.content = content.getContent();
+    }
 }
