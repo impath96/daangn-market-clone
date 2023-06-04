@@ -67,6 +67,13 @@ public class ArticleService {
         Article article = articleRepository.findById(articleId)
             .orElseThrow(() -> new CustomException(ErrorCode.ARTICLE_NOT_FOUND));
 
+        User user = userRepository.findByEmail(userEmail)
+            .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+
+        if(!article.isOwner(user)) {
+            throw new CustomException(ErrorCode.UN_MATCHED_USER_AND_ARTICLE);
+        }
+
         Content updateContent = Content.builder()
             .content(updateArticle.getContent())
             .title(updateArticle.getTitle())
