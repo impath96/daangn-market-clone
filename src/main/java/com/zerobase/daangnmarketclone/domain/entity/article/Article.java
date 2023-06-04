@@ -59,4 +59,11 @@ public class Article {
     }
 
 
+    public void updateContent(Content content) {
+        this.content.update(content);
+    }
+
+    public boolean isOwner(User user) {
+        return this.user.getId().equals(user.getId());
+    }
 }
