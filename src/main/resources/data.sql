@@ -1,5 +1,5 @@
 -- 카테고리 --
-insert into category(category_id, category_name, created_date_time, updated_date_time)
+insert into CATEGORY (category_id, category_name, created_date_time, updated_date_time)
 values (1, '디지털기기', now(), now()),
        (2, '생활가전', now(), now()),
        (3, '가구/인테리어', now(), now()),
@@ -16,11 +16,11 @@ values (1, '디지털기기', now(), now()),
        (14, '식물', now(), now());
 
 --
--- insert into region(region_id, state, city, town)
--- values (1, '부산시', '사하구', '감천동'),
---        (2, '부산시', '사하구', '당리동'),
---        (3, '부산시', '사하구', '하단동'),
---        (4, '부산시', '사하구', '다대동'),
+insert into region(region_id, state, city, town)
+values (1, '부산시', '사하구', '감천동'),
+       (2, '부산시', '사하구', '당리동'),
+       (3, '부산시', '사하구', '하단동'),
+       (4, '부산시', '사하구', '다대동');
 
 
 

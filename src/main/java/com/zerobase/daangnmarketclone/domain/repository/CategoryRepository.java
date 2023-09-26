@@ -1,10 +1,13 @@
 package com.zerobase.daangnmarketclone.domain.repository;
 
 import com.zerobase.daangnmarketclone.domain.entity.Category;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
-@Repository
-public interface CategoryRepository extends JpaRepository<Category, Long> {
+public interface CategoryRepository extends CommonRepository<Category, Long> {
 
+    @Transactional(readOnly = true)
+    List<Category> findAll();
+
+    List<Category> saveAll(Iterable<Category> categories);
 }

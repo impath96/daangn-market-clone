@@ -31,34 +31,21 @@ public class UserService {
 
     // 예외 처리가 로직의 대부분... 어떻게 하지
     @Transactional
-    public void saveRegion(String email, Long regionId) {
+    public void addRegion(String email, Long regionId) {
 
-        // 1) 엔티티 조회(User, Region)
-        User user = userRepository.findByEmail(email)
-            .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
-        Region region = regionRepository.findById(regionId)
-            .orElseThrow(() -> new CustomException(ErrorCode.REGION_NOT_FOUND));
+        User user = findUserByEmail(email);
+        Region region = findRegionById(regionId);
 
-        int count = userRegionRepository.countByUserId(user.getId());
+        validateUserRegion(user, region);
 
-        // 2) 등록된 동네가 2개 이상이면 - exception 발생
-        if (count >= 2) {
-            throw new CustomException(ErrorCode.USER_REGION_REGISTRATION_MAX_ERROR);
-        }
+        // 유저의 동네를 region 으로 등록(이때 대표 동네로 설정, 인증은 X)
+        user.addRegion(region);
 
-        // 3) 이미 등록된 동네일 경우 - exception 발생
-        if (user.hasRegion(region)) {
-            throw new CustomException(ErrorCode.USER_REGION_DUPLICATED);
-        }
-
-        // 4) 등록된 동네가 없거나 1개 있을 경우
-        //  - 해당 유저의 동네를 region으로 등록(이때 대표 동네로 설정, 인증은 X)
-        UserRegion userRegion = UserRegion.create(user, region);
-
-        userRegionRepository.save(userRegion);
+        userRepository.save(user);
 
     }
 
+    // TODO 하나의 트랜잭션 내에 S3로 이미지를 전송하는 로직이 포함 => 트랜잭션을 어떻게 분리할 지 고민
     @Transactional
     public String updateProfile(UserDto userDto, MultipartFile multipartFile) {
 
@@ -109,13 +96,31 @@ public class UserService {
 
     }
 
+    private void validateUserRegion(User user, Region region) {
+
+        // 1) 등록된 동네가 2개 이상이면 - exception 발생
+        if (user.isAlreadyFullRegion()) {
+            throw new CustomException(ErrorCode.USER_REGION_REGISTRATION_MAX_ERROR);
+        }
+
+        // 2) 이미 등록된 동네일 경우 - exception 발생
+        if (user.hasRegion(region)) {
+            throw new CustomException(ErrorCode.USER_REGION_DUPLICATED);
+        }
+    }
+
+    private Region findRegionById(Long regionId) {
+        return regionRepository.findById(regionId)
+            .orElseThrow(() -> new CustomException(ErrorCode.REGION_NOT_FOUND));
+    }
+
     private UserRegion findUserRegionById(Long userRegionId) {
         return userRegionRepository.findById(userRegionId)
             .orElseThrow(() -> new CustomException(ErrorCode.USER_REGION_NOT_FOUND));
     }
 
     private User findUserByEmail(String email) {
-        return userRepository.findByEmail(email)
+        return userRepository.findByEmailWithUserRegion(email)
             .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
     }
 

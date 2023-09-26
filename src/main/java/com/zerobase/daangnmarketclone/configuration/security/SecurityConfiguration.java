@@ -58,7 +58,7 @@ public class SecurityConfiguration {
             .httpBasic().disable()
             .authorizeRequests()
             // 각 API 경로에 대한 접근권한 설정
-            .antMatchers("/sign-up", "/h2-console/**").permitAll()
+            .antMatchers("/sign-up", "/h2-console/**", "/api/auth/**", "/api/kakako/**").permitAll()
             .antMatchers(HttpMethod.GET, "/**").permitAll()
             .anyRequest().authenticated()
             .and()

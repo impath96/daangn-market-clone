@@ -10,7 +10,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 
 public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    private final String AUTH_TOKEN_HEADER = "X-AUTH-TOKEN";
+    private static final String AUTH_TOKEN_HEADER = "X-AUTH-TOKEN";
 
     // 로그인 성공 시
     @Override

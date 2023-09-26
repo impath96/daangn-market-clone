@@ -14,10 +14,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "user_region")
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
@@ -42,24 +44,12 @@ public class UserRegion {
     // 대표 동네 설정 상태
     private boolean isRepresent;
 
-    //== 연관관계 매핑 편의 메서드 ==//
-    public void addUser(User user) {
-        this.user = user;
-        user.getUserRegions().add(this);
-    }
-
-    public void addRegion(Region region) {
-        this.region = region;
-    }
-
-    //== 생성 메서드 ==//
     public static UserRegion create(User user, Region region) {
-        UserRegion userRegion = UserRegion.builder()
+        return UserRegion.builder()
             .isRepresent(true)
+            .user(user)
+            .region(region)
             .build();
-        userRegion.addUser(user);
-        userRegion.addRegion(region);
-        return userRegion;
     }
 
     public boolean isOwner(Long userId) {
@@ -70,4 +60,7 @@ public class UserRegion {
         this.isAuthenticated = true;
     }
 
+    public void setRepresent(boolean isRepresent) {
+        this.isRepresent = isRepresent;
+    }
 }

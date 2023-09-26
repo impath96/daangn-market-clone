@@ -32,11 +32,11 @@ public class UserController {
 
     // 내 동네 설정(등록)
     @PostMapping("/locations/{id}")
-    public void saveRegion(
+    public void addRegion(
         @AuthenticationPrincipal UserDetails loginUser,
         @PathVariable("id") Long regionId
     ) {
-        userService.saveRegion(loginUser.getUsername(), regionId);
+        userService.addRegion(loginUser.getUsername(), regionId);
     }
 
     @PutMapping("/profile")

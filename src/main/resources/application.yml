@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    default: default
   h2:
     console:
       path: /h2-console
@@ -14,6 +16,48 @@ spring:
     open-in-view: true
     show-sql: true
     defer-datasource-initialization: true
+cloud:
+  aws:
+    s3:
+      bucket: daangn-project  # bucket 이름
+    region:
+      static: ap-northeast-2  # region 이름(아시아-서울)
+    stack:
+      auto: false
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error
+
+kakao:
+  api:
+    key: KakaoAK ff402161eb9124fd65817e6e43910c3f
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    open-in-view: true
+    show-sql: true
+  sql:
+    init:
+      mode: never
 cloud:
   aws:
     s3:

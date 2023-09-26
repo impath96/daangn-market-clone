@@ -30,6 +30,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User extends BaseTimeEntity {
 
+    private static final Integer MAX_REGION_COUNT = 2;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -51,10 +53,10 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserRegion> userRegions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<InterestCategory> interestCategories = new ArrayList<>();
 
     @Builder
@@ -71,7 +73,8 @@ public class User extends BaseTimeEntity {
     }
 
     public boolean hasRegion(Region region) {
-        return userRegions.contains(region);
+        return userRegions.stream()
+            .anyMatch(userRegion -> userRegion.getRegion().equals(region));
     }
 
     public void updateProfile(Profile profile) {
@@ -83,5 +86,21 @@ public class User extends BaseTimeEntity {
             .filter(UserRegion::isRepresent)
             .findFirst()
             .orElseThrow(() -> new CustomException(ErrorCode.USER_REGION_NOT_FOUND));
+    }
+
+    public boolean hasRole(UserRole role) {
+        return this.role.equals(role);
+    }
+
+    public void addRegion(Region region) {
+        // 기존 대표 동네 -> 새로운 region 으로 대표 동네 설정
+        for(UserRegion userRegion : userRegions) {
+            userRegion.setRepresent(false);
+        }
+        this.userRegions.add(UserRegion.create(this, region));
+    }
+
+    public boolean isAlreadyFullRegion() {
+        return this.userRegions.size() >= MAX_REGION_COUNT;
     }
 }
